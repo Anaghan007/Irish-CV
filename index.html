@@ -53,6 +53,7 @@
             color: white;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         .bento-card {
@@ -63,9 +64,7 @@
             position: relative;
         }
 
-        .sticker-glow { filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4)); }
-
-        /* --- STRICT PRINT RULES (Forces Desktop Layout on Paper) --- */
+        /* --- STRICT PRINT RULES --- */
         @media print {
             @page { size: A4; margin: 0mm; }
             body {
@@ -75,20 +74,28 @@
                 width: 210mm;
                 height: 296mm;
                 box-sizing: border-box;
-                display: block; /* Reset flex */
+                display: block; /* Force Block layout for print */
             }
-            #root { width: 100%; height: 100%; }
+            #root { width: 100%; height: 100%; display: block; }
             .no-print { display: none !important; }
             a { text-decoration: none !important; color: inherit !important; }
-            
+
+            /* Desktop Wrapper Reset for Print */
+            .cv-wrapper {
+                max-width: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
             /* FORCE GRID LAYOUT FOR PRINT */
             .print-grid { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: 0.75rem !important; height: 100% !important; }
             .print-col-4 { grid-column: span 4 / span 4 !important; }
             .print-col-8 { grid-column: span 8 / span 8 !important; }
             .print-col-12 { grid-column: span 12 / span 12 !important; }
             .print-flex-row { flex-direction: row !important; }
+            .print-flex-col { flex-direction: column !important; }
             .print-h-full { height: 100% !important; }
-            .print-gap-3 { gap: 0.75rem !important; }
             
             /* Hide scrollbars/overflow */
             .overflow-hidden-print { overflow: hidden !important; }
@@ -100,7 +107,7 @@
     <div id="root"></div>
 
     <script>
-        // --- DYNAMIC MANIFEST FOR PWA ---
+        // --- DYNAMIC MANIFEST ---
         const manifestContent = {
             "name": "Anaghan Smit CV",
             "short_name": "Anaghan CV",
@@ -169,7 +176,7 @@
 
         const App = () => {
             return (
-                <div className="w-full min-h-screen md:h-full flex flex-col justify-between font-sans relative p-4 md:p-0">
+                <div className="min-h-screen w-full flex justify-center p-4 md:py-8">
                     
                     {/* --- STICKY PDF BUTTON --- */}
                     <button 
@@ -180,15 +187,15 @@
                         <i className="fas fa-file-pdf text-xl group-hover:animate-bounce"></i>
                     </button>
 
-                    {/* MAIN GRID CONTAINER 
-                       Mobile: Flex Column (Vertical Stack)
-                       Desktop/Print: Grid with 12 Columns
+                    {/* CV WRAPPER:
+                       - Mobile: w-full (fills screen)
+                       - Desktop: max-w-[210mm] (Standard A4 width), centered
                     */}
-                    <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-3 h-auto md:h-full print-grid print-gap-3">
+                    <div className="cv-wrapper w-full md:max-w-[210mm] flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-3 print-grid">
                         
                         {/* 1. HEADER */}
-                        <div className="col-span-12 print-col-12 bento-card p-6 flex flex-col md:flex-row items-center md:items-center gap-6 bg-gradient-to-r from-card to-purple-900/20 shrink-0 text-center md:text-left print-flex-row">
-                            <div className="w-24 h-24 md:w-24 md:h-24 relative shrink-0">
+                        <div className="col-span-12 print-col-12 bento-card p-6 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-card to-purple-900/20 shrink-0 text-center md:text-left print-flex-row">
+                            <div className="w-24 h-24 relative shrink-0">
                                 <div className="absolute inset-0 bg-purple-600 blur-xl opacity-25 rounded-full"></div>
                                 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png" 
                                      className="relative w-full h-full object-contain filter drop-shadow-xl" alt="Me" />
@@ -230,8 +237,8 @@
                             </div>
                         </div>
 
-                        {/* 4. EXPERIENCE */}
-                        <div className="col-span-12 md:col-span-8 print-col-8 bento-card p-6 flex flex-col md:flex-grow min-h-0 overflow-hidden-print">
+                        {/* 4. EXPERIENCE (Height adapts to content) */}
+                        <div className="col-span-12 md:col-span-8 print-col-8 bento-card p-6 flex flex-col overflow-hidden-print">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-briefcase text-accent"></i> Experience</h3>
                             <div className="flex flex-col gap-6 md:gap-5">
                                 {cvData.experience.map((exp, i) => (
@@ -248,7 +255,7 @@
                         </div>
 
                         {/* 5. SKILLS */}
-                        <div className="col-span-12 md:col-span-4 print-col-4 bento-card p-5 flex flex-col md:flex-grow min-h-0">
+                        <div className="col-span-12 md:col-span-4 print-col-4 bento-card p-5 flex flex-col">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-bolt text-pop"></i> Competencies</h3>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {cvData.skills.map((s,i) => (
