@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Anaghan Smit - CV</title>
-    
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png">
+    <title>Anaghan Smit | CV</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        nameFont: ['Unbounded', 'sans-serif'], 
+                        roleFont: ['Space Grotesk', 'sans-serif'],
+                    },
                     colors: {
-                        dark: '#0e0e0e',
-                        card: '#18181b',
-                        border: '#27272a',
-                        accent: '#8b5cf6',
-                        pop: '#10b981',
+                        dark: '#09090b',       
+                        card: '#18181b',       
+                        border: '#27272a',     
+                        accent: '#f97316',     // Orange (From Reference)
+                    },
+                    backgroundImage: {
+                        'gradient-glow': 'linear-gradient(to right, #f97316, #db2777)', 
                     }
                 }
             }
@@ -33,22 +38,65 @@
     </script>
 
     <style>
-        body { background-color: #0e0e0e; color: white; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-        .bento-card { background-color: #18181b; border: 1px solid #27272a; border-radius: 12px; overflow: hidden; position: relative; }
+        body { background-color: #09090b; color: #e4e4e7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        .bento-card { 
+            background-color: #18181b; 
+            border: 1px solid #27272a; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+        .bento-card:hover { border-color: #3f3f46; }
 
-        /* --- PRINT RULES --- */
+        /* --- EXACT REFERENCE PDF FORMATION --- */
         @media print {
-            @page { size: A4; margin: 0mm; }
-            body { background-color: #0e0e0e !important; margin: 0; padding: 10mm !important; width: 210mm; height: 296mm; display: block; }
-            .no-print { display: none !important; }
-            .cv-wrapper { max-width: none !important; margin: 0 !important; width: 100% !important; height: 100% !important; }
-            /* FORCE GRID */
-            .print-grid { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: 0.75rem !important; }
-            .print-col-4 { grid-column: span 4 / span 4 !important; }
-            .print-col-6 { grid-column: span 6 / span 6 !important; }
-            .print-col-8 { grid-column: span 8 / span 8 !important; }
+            @page { 
+                size: A4; 
+                margin: 0mm !important; 
+            }
+            
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background-color: #09090b !important;
+                overflow: hidden !important; 
+            }
+
+            #root {
+                display: flex;
+                /* THIS CENTERS IT VERTICALLY AND HORIZONTALLY */
+                justify-content: center;
+                align-items: center; 
+                width: 100%;
+                height: 100%;
+            }
+
+            .cv-wrapper {
+                width: 100% !important;
+                /* Slight scale down to ensure margins on all sides */
+                zoom: 90%; 
+                padding: 15mm !important;
+                box-sizing: border-box;
+            }
+
+            .print-hidden { display: none !important; }
+            
+            .print-grid { 
+                display: grid !important; 
+                grid-template-columns: repeat(12, minmax(0, 1fr)) !important; 
+                gap: 0.75rem !important; 
+            }
+
             .print-col-12 { grid-column: span 12 / span 12 !important; }
+            .print-col-4 { grid-column: span 4 / span 4 !important; }
+            .print-col-8 { grid-column: span 8 / span 8 !important; }
             .print-flex-row { flex-direction: row !important; }
+            
+            /* Hide scrollbars */
+            ::-webkit-scrollbar { display: none; }
         }
     </style>
 </head>
@@ -56,195 +104,223 @@
 
     <div id="root"></div>
 
+    <script>
+        /* Avatar Generation Script from Reference */
+        (function() {
+            const setSmartFavicon = () => {
+                const link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+                const img = new Image();
+                img.src = 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png'; 
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 128; canvas.height = 128;
+                    const ctx = canvas.getContext('2d');
+                    ctx.beginPath(); ctx.arc(64, 64, 64, 0, 2 * Math.PI); ctx.closePath(); ctx.clip();
+                    ctx.drawImage(img, 0, 0, 128, 128);
+                    link.href = canvas.toDataURL();
+                };
+            };
+            setSmartFavicon();
+        })();
+    </script>
+
     <script type="text/babel">
 
         const cvData = {
             name: "Anaghan Smit",
             role: "Digital Marketing & Social Specialist",
-            visa: "Stamp 1G (Full Time Work)",
+            visa: "Stamp 1G (Full Time Work)", 
             contact: {
                 email: "anaghan161@gmail.com",
                 phone: "+353 89 123 4567", 
-                location: "Dublin, Ireland 🇮🇪"
+                location: "Dublin, Ireland 🇮🇪",
             },
+            
+            avatar: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png",
+            
             bio: "Strategic Digital Marketer merging data-driven insights with viral social content. MSc graduate skilled in full-funnel marketing—from SEO and Analytics to community building on TikTok & LinkedIn. I help Irish brands grow by blending technical precision with creative storytelling.",
+            
             stats: [
                 { val: "1.1", label: "MSc Honours" },
-                { val: "360°", label: "Marketing View" },
-                { val: "Now", label: "Availability" }
+                { val: "360°", label: "Marketing View" }
             ],
+
             skills: [
                 "Digital Strategy & SEO", 
                 "Social Media Growth",    
                 "Google Analytics (GA4)", 
                 "Content Creation (Video)",
                 "Campaign Management",    
-                "Community Engagement"    
+                "Community Engagement"
             ],
-            tech: [
-                { icon: "fab fa-google", name: "Google Ads/Analytics" },
-                { icon: "fab fa-tiktok", name: "TikTok/Reels Trends" },
-                { icon: "fas fa-chart-pie", name: "SEO & Data Analysis" },
-                { icon: "fas fa-palette", name: "Canva & CapCut" },
+            
+            tools: [
+                { icon: "fa-brands fa-google", name: "Google Ads/Analytics" },
+                { icon: "fa-brands fa-tiktok", name: "TikTok/Reels Trends" },
+                { icon: "fa-solid fa-chart-pie", name: "SEO & Data Analysis" },
+                { icon: "fa-solid fa-paintbrush", name: "Canva & CapCut" },
             ],
+
             experience: [
                 {
                     role: "Digital Marketing Strategist",
-                    org: "Dublin Business School (Capstone)",
+                    company: "Dublin Business School (Capstone)", 
+                    period: "2026",
                     desc: "Designed a comprehensive digital transformation plan for an SME. Conducted SEO keyword research, competitor analysis, and built a data-backed funnel strategy to increase web traffic and lead generation by 20%."
                 },
                 {
                     role: "Social Media Content Creator",
-                    org: "Freelance Portfolio",
+                    company: "Freelance Portfolio", 
+                    period: "2024 - 2025",
                     desc: "Managed end-to-end social production. Filmed and edited short-form video content (Reels/Shorts) using trending audio, resulting in high organic reach. Executed community engagement tactics to boost brand loyalty."
                 }
             ],
-            // --- NEW EXPANDED EDUCATION DATA ---
+
             education: [
                 { 
                     degree: "MSc in Digital Marketing & Analytics", 
                     school: "Dublin Business School", 
-                    year: "2026 - 2027",
-                    location: "Dublin, Ireland",
-                    modules: ["Digital Strategy", "Web Analytics (GA4)", "Social Media Marketing", "SEO & SEM", "Data Visualization"]
+                    year: "2026 - 2027"
                 },
                 { 
                     degree: "Bachelor of Computer Applications (BCA)", 
                     school: "Veer Narmad South Gujarat University", 
-                    year: "2022 - 2025",
-                    location: "Gujarat, India",
-                    modules: ["Web Development Basics", "Database Management", "UI/UX Principles", "Programming Logic", "Information Systems"]
+                    year: "2022 - 2025"
                 }
             ]
         };
 
         const App = () => {
             return (
-                <div className="min-h-screen w-full flex justify-center p-4 md:py-8">
+                <div className="min-h-screen w-full flex justify-center p-4 md:py-10 bg-dark font-sans selection:bg-accent selection:text-white">
                     
-                    {/* PDF BUTTON */}
-                    <button onClick={() => window.print()} className="no-print fixed bottom-6 right-6 z-50 bg-accent hover:bg-violet-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group" title="Save as PDF">
-                        <i className="fas fa-file-pdf text-xl group-hover:animate-bounce"></i>
+                    <button onClick={() => window.print()} className="print-hidden fixed bottom-8 right-8 z-50 bg-gradient-to-r from-orange-500 to-pink-500 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                        <i className="fas fa-download text-xl"></i>
                     </button>
 
-                    <div className="cv-wrapper w-full md:max-w-[210mm] flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-3 print-grid">
+                    <div className="cv-wrapper w-full md:max-w-[210mm] flex flex-col md:grid md:grid-cols-12 gap-3 print-grid">
                         
                         {/* 1. HEADER */}
-                        <div className="col-span-12 print-col-12 bento-card p-6 flex flex-col md:flex-row items-center gap-6 bg-gradient-to-r from-card to-purple-900/20 shrink-0 text-center md:text-left print-flex-row">
-                            <div className="w-24 h-24 relative shrink-0">
-                                <div className="absolute inset-0 bg-purple-600 blur-xl opacity-25 rounded-full"></div>
-                                <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png" 
-                                     className="relative w-full h-full object-contain filter drop-shadow-xl" alt="Me" />
+                        <div className="col-span-12 print-col-12 bento-card p-6 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden print-flex-row">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none"></div>
+                            
+                            <div className="w-40 h-40 relative shrink-0">
+                                <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full"></div>
+                                <img 
+                                    src={cvData.avatar} 
+                                    className="relative w-full h-full object-contain drop-shadow-2xl" 
+                                    alt="Avatar" 
+                                />
                             </div>
-                            <div className="w-full">
-                                <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-none mb-2">{cvData.name}</h1>
-                                <p className="text-purple-400 font-medium text-lg mb-3 md:mb-2">{cvData.role}</p>
-                                <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs text-gray-400">
-                                    <span className="bg-white/5 px-2 py-1 rounded border border-white/5"><i className="fas fa-check-circle text-pop mr-1"></i> {cvData.visa}</span>
-                                    <span className="bg-white/5 px-2 py-1 rounded border border-white/5"><i className="fas fa-map-marker-alt mr-1"></i> {cvData.contact.location}</span>
+                            
+                            <div className="text-center md:text-left z-10 w-full">
+                                <h1 className="text-3xl md:text-5xl font-nameFont font-black text-white mb-2 tracking-tight leading-tight">{cvData.name}</h1>
+                                <p className="text-transparent bg-clip-text bg-gradient-glow font-roleFont font-bold text-lg md:text-xl mb-3 uppercase tracking-wider">
+                                    {cvData.role}
+                                </p>
+                                <div className="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-gray-400 font-medium">
+                                    <span className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 text-emerald-400">
+                                        <i className="fas fa-check-circle"></i> {cvData.visa}
+                                    </span>
+                                    <span className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+                                        <i className="fas fa-map-pin text-accent"></i> {cvData.contact.location}
+                                    </span>
+                                    <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 hover:bg-white/10 transition-colors">
+                                        <i className="fas fa-envelope text-accent"></i> {cvData.contact.email}
+                                    </a>
+                                    <a href={`tel:${cvData.contact.phone}`} className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 hover:bg-white/10 transition-colors">
+                                        <i className="fas fa-phone text-accent"></i> {cvData.contact.phone}
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 2. STATS */}
-                        <div className="col-span-12 md:col-span-4 print-col-4 bento-card p-4 flex flex-col justify-center bg-card shrink-0">
-                            <div className="grid grid-cols-3 md:flex md:flex-col gap-4 md:gap-0">
-                                {cvData.stats.map((s,i) => (
-                                    <div key={i} className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end md:border-b md:border-white/5 md:pb-2 md:mb-2 last:mb-0 last:border-0 last:pb-0 text-center md:text-left">
-                                        <span className="text-gray-500 text-[9px] md:text-[10px] uppercase tracking-wider mb-1 md:mb-0">{s.label}</span>
-                                        <span className="text-lg md:text-lg font-bold text-white">{s.val}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* 3. BIO */}
-                        <div className="col-span-12 md:col-span-8 print-col-8 bento-card p-5 flex flex-col justify-between shrink-0">
-                            <p className="text-gray-300 text-sm leading-relaxed mb-4 md:mb-0">"{cvData.bio}"</p>
-                            <div className="flex flex-col md:flex-row gap-3 mt-2 md:mt-2 print-flex-row">
-                                <a href={`mailto:${cvData.contact.email}`} className="flex-1 bg-white/5 rounded p-3 md:p-2 flex items-center justify-center md:justify-start gap-2 border border-white/5 hover:bg-white/10 transition cursor-pointer group">
-                                    <i className="fas fa-envelope text-gray-400 group-hover:text-white transition-colors"></i>
-                                    <span className="text-xs font-medium text-gray-300 truncate group-hover:text-white transition-colors">{cvData.contact.email}</span>
-                                </a>
-                                <a href={`tel:${cvData.contact.phone}`} className="flex-1 bg-white/5 rounded p-3 md:p-2 flex items-center justify-center md:justify-start gap-2 border border-white/5 hover:bg-white/10 transition cursor-pointer group">
-                                    <i className="fas fa-phone text-gray-400 group-hover:text-white transition-colors"></i>
-                                    <span className="text-xs font-medium text-gray-300 truncate group-hover:text-white transition-colors">{cvData.contact.phone}</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* 4. EXPERIENCE */}
-                        <div className="col-span-12 md:col-span-6 print-col-6 bento-card p-6 flex flex-col overflow-hidden-print">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-briefcase text-accent"></i> Experience</h3>
-                            <div className="flex flex-col gap-6 md:gap-5">
-                                {cvData.experience.map((exp, i) => (
-                                    <div key={i} className="relative pl-4 border-l-2 border-white/10">
-                                        <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-accent"></div>
-                                        <div className="flex justify-between mb-1">
-                                            <span className="font-bold text-white text-base">{exp.role}</span>
+                        {/* 2. LEFT COLUMN */}
+                        <div className="col-span-12 md:col-span-4 print-col-4 flex flex-col gap-3">
+                            <div className="bento-card p-5">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <i className="fas fa-user-astronaut text-accent"></i>
+                                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">About Me</span>
+                                </div>
+                                <p className="text-gray-300 text-sm leading-relaxed font-light mb-4">
+                                    {cvData.bio}
+                                </p>
+                                {/* Quick Stats embedded in About */}
+                                <div className="flex gap-2">
+                                    {cvData.stats.map((s,i) => (
+                                        <div key={i} className="bg-white/5 rounded p-2 flex-1 text-center border border-white/5">
+                                            <div className="text-white font-bold text-sm">{s.val}</div>
+                                            <div className="text-[9px] text-gray-500 uppercase">{s.label}</div>
                                         </div>
-                                        <div className="text-xs text-purple-400 mb-2 md:mb-1">{exp.org}</div>
-                                        <p className="text-sm text-gray-400 leading-relaxed">{exp.desc}</p>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* 5. SKILLS & TOOLS (Moved to side column) */}
-                        <div className="col-span-12 md:col-span-6 print-col-6 bento-card p-5 flex flex-col">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-bolt text-pop"></i> Competencies</h3>
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {cvData.skills.map((s,i) => (
-                                    <span key={i} className="px-2 py-1 bg-white/5 rounded-[4px] text-[11px] text-gray-300 border border-white/10">{s}</span>
-                                ))}
-                            </div>
-                            <div className="mt-auto">
-                                <h4 className="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-widest">Tool Stack</h4>
-                                <div className="grid grid-cols-2 gap-2">
-                                    {cvData.tech.map((t,i) => (
-                                        <div key={i} className="text-[11px] text-gray-300 flex items-center gap-3 p-2 md:p-1.5 rounded bg-white/5 border border-white/5">
-                                            <div className="w-5 text-center"><i className={`${t.icon} text-gray-400 text-xs`}></i></div> 
-                                            {t.name}
+                            <div className="bento-card p-5 flex-grow">
+                                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Core Skills</h3>
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {cvData.skills.map((skill, i) => (
+                                        <span key={i} className="px-2.5 py-1 bg-white/5 text-gray-300 text-[11px] font-medium rounded border border-white/5 hover:border-accent/30 transition-colors">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                                
+                                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Tools</h3>
+                                <div className="grid grid-cols-1 gap-2">
+                                    {cvData.tools.map((t, i) => (
+                                        <div key={i} className="flex items-center gap-2 text-xs text-gray-400 bg-black/20 p-2 rounded">
+                                            <i className={`${t.icon} text-accent`}></i> {t.name}
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        {/* 6. EDUCATION (New Separate Section) */}
-                        <div className="col-span-12 print-col-12 bento-card p-6">
-                            <h3 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
-                                <i className="fas fa-graduation-cap text-pop"></i> Education History
-                            </h3>
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {cvData.education.map((edu, i) => (
-                                    <div key={i} className="relative group">
-                                        {/* Card BG */}
-                                        <div className="bg-white/5 p-4 rounded-xl border border-white/5 h-full hover:border-white/10 transition-colors">
-                                            <div className="flex justify-between items-start mb-2">
-                                                <div className="bg-pop/10 text-pop px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
-                                                    {i === 0 ? "Masters" : "Bachelors"}
-                                                </div>
-                                                <div className="text-gray-400 text-xs font-mono">{edu.year}</div>
+                        {/* 3. RIGHT COLUMN */}
+                        <div className="col-span-12 md:col-span-8 print-col-8 flex flex-col gap-3">
+                            <div className="bento-card p-6">
+                                <h2 className="text-lg font-roleFont font-bold text-white mb-6 flex items-center gap-2">
+                                    <span className="w-8 h-8 rounded bg-accent/10 flex items-center justify-center text-accent text-sm">
+                                        <i className="fas fa-briefcase"></i>
+                                    </span>
+                                    Experience
+                                </h2>
+
+                                <div className="flex flex-col gap-5">
+                                    {cvData.experience.map((exp, i) => (
+                                        <div key={i} className="relative pl-6 border-l border-white/10 group">
+                                            <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-border group-hover:bg-accent transition-colors shadow-[0_0_0_4px_#18181b]"></div>
+                                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-1">
+                                                <h3 className="text-white font-bold text-lg group-hover:text-accent transition-colors">{exp.role}</h3>
+                                                <span className="text-xs font-mono text-gray-500 bg-white/5 px-2 py-1 rounded">{exp.period}</span>
                                             </div>
-                                            
-                                            <h4 className="text-white font-bold text-lg leading-tight mb-1">{edu.degree}</h4>
-                                            <p className="text-purple-400 text-sm mb-4">{edu.school} <span className="text-gray-600">•</span> {edu.location}</p>
-                                            
-                                            <div className="border-t border-white/5 pt-3">
-                                                <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Key Modules</p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {edu.modules.map((mod, k) => (
-                                                        <span key={k} className="text-xs text-gray-300 bg-black/20 px-2 py-1 rounded">
-                                                            {mod}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
+                                            <div className="text-accent text-sm font-medium mb-1">{exp.company}</div>
+                                            <p className="text-gray-400 text-sm leading-relaxed">
+                                                {exp.desc}
+                                            </p>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="bento-card p-6 flex-grow flex flex-col justify-center">
+                                <h2 className="text-lg font-roleFont font-bold text-white mb-4 flex items-center gap-2">
+                                    <i className="fas fa-graduation-cap text-accent"></i> Education
+                                </h2>
+                                <div className="grid grid-cols-1 gap-3">
+                                    {cvData.education.map((edu, i) => (
+                                        <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5 hover:border-white/10 transition-colors flex justify-between items-center">
+                                            <div>
+                                                <div className="text-white font-bold text-sm">{edu.degree}</div>
+                                                <div className="text-gray-500 text-xs mt-1">{edu.school}</div>
+                                            </div>
+                                            <div className="text-accent font-mono text-xs bg-accent/10 px-2 py-1 rounded">{edu.year}</div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
