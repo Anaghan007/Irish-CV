@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anaghan Smit - CV</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: '#0e0e0e',
+                        card: '#18181b',
+                        border: '#27272a',
+                        accent: '#8b5cf6',
+                        pop: '#10b981',
+                    },
+                    animation: { 'float': 'float 6s ease-in-out infinite' },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: white;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .bento-card {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sticker-glow { filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4)); }
+
+        /* --- STRICT PRINT RULES --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0mm; /* Force zero margin */
+            }
+            body {
+                background-color: #0e0e0e !important;
+                margin: 0;
+                padding: 10mm !important; /* Fixed padding for A4 */
+                width: 210mm;
+                height: 296mm; /* Exact height minus tiny buffer */
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            #root {
+                width: 100%;
+                height: 100%;
+            }
+            .no-print { display: none !important; }
+            
+            /* Color Fixes */
+            .text-gray-400 { color: #a1a1aa !important; }
+            .text-purple-400 { color: #c084fc !important; }
+            .bg-white\/5 { background-color: #27272a !important; border: 1px solid #3f3f46 !important; }
+            
+            /* Remove link underlines in print if necessary, though style handles it */
+            a { text-decoration: none !important; color: inherit !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const cvData = {
+            name: "Anaghan Smit",
+            role: "Digital Marketing & Social Specialist",
+            visa: "Stamp 1G (Full Time Work)",
+            contact: {
+                email: "anaghan161@gmail.com",
+                phone: "+353 89 123 4567", // <--- UPDATE YOUR NUMBER HERE
+                location: "Dublin, Ireland 🇮🇪"
+            },
+            bio: "Strategic Digital Marketer merging data-driven insights with viral social content. MSc graduate skilled in full-funnel marketing—from SEO and Analytics to community building on TikTok & LinkedIn. I help Irish brands grow by blending technical precision with creative storytelling.",
+            stats: [
+                { val: "1.1", label: "MSc Honours" },
+                { val: "360°", label: "Marketing View" },
+                { val: "Now", label: "Availability" }
+            ],
+            skills: [
+                "Digital Strategy & SEO", 
+                "Social Media Growth",    
+                "Google Analytics (GA4)", 
+                "Content Creation (Video)",
+                "Campaign Management",    
+                "Community Engagement"    
+            ],
+            tech: [
+                { icon: "fab fa-google", name: "Google Ads/Analytics" },
+                { icon: "fab fa-tiktok", name: "TikTok/Reels Trends" },
+                { icon: "fas fa-chart-pie", name: "SEO & Data Analysis" },
+                { icon: "fas fa-palette", name: "Canva & CapCut" },
+            ],
+            experience: [
+                {
+                    role: "Digital Marketing Strategist",
+                    org: "Dublin Business School (Capstone)",
+                    desc: "Designed a comprehensive digital transformation plan for an SME. Conducted SEO keyword research, competitor analysis, and built a data-backed funnel strategy to increase web traffic and lead generation by 20%."
+                },
+                {
+                    role: "Social Media Content Creator",
+                    org: "Freelance Portfolio",
+                    desc: "Managed end-to-end social production. Filmed and edited short-form video content (Reels/Shorts) using trending audio, resulting in high organic reach. Executed community engagement tactics to boost brand loyalty."
+                }
+            ],
+            education: [
+                { degree: "MSc Digital Marketing", school: "Dublin Business School", year: "2027" },
+                { degree: "Bachelor in Computer Application", school: "Veer Narmad South Gujarat University", year: "2025" }
+            ]
+        };
+
+        const App = () => {
+            return (
+                <div className="w-full h-full flex flex-col justify-between font-sans">
+                    
+                    {/* Header Controls (Removed on Print) */}
+                    <div className="no-print mb-4 bg-purple-500/10 border border-purple-500/20 p-3 rounded-lg flex justify-between items-center">
+                        <span className="text-purple-400 text-sm font-bold">⚠️ Set Margins to "None" in Print Settings</span>
+                        <button onClick={() => window.print()} className="bg-white text-black px-4 py-1.5 rounded text-sm font-bold hover:scale-105 transition">Print PDF</button>
+                    </div>
+
+                    <div className="flex flex-col gap-3 h-full">
+                        
+                        {/* ROW 1: HEADER (Flex Grow slightly) */}
+                        <div className="bento-card p-6 flex items-center gap-6 bg-gradient-to-r from-card to-purple-900/20 shrink-0">
+                            <div className="w-24 h-24 relative shrink-0">
+                                <div className="absolute inset-0 bg-purple-600 blur-xl opacity-25 rounded-full"></div>
+                                <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png" 
+                                     className="relative w-full h-full object-contain filter drop-shadow-xl" alt="Me" />
+                            </div>
+                            <div>
+                                <h1 className="text-4xl font-black text-white tracking-tight leading-none mb-2">{cvData.name}</h1>
+                                <p className="text-purple-400 font-medium text-lg mb-2">{cvData.role}</p>
+                                <div className="flex gap-3 text-xs text-gray-400">
+                                    <span className="bg-white/5 px-2 py-1 rounded border border-white/5"><i className="fas fa-check-circle text-pop mr-1"></i> {cvData.visa}</span>
+                                    <span className="bg-white/5 px-2 py-1 rounded border border-white/5"><i className="fas fa-map-marker-alt mr-1"></i> {cvData.contact.location}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ROW 2: STATS + BIO */}
+                        <div className="grid grid-cols-12 gap-3 shrink-0">
+                            <div className="col-span-4 bento-card p-4 flex flex-col justify-center bg-card">
+                                {cvData.stats.map((s,i) => (
+                                    <div key={i} className="flex justify-between items-end border-b border-white/5 pb-2 mb-2 last:mb-0 last:border-0 last:pb-0">
+                                        <span className="text-gray-500 text-[10px] uppercase tracking-wider">{s.label}</span>
+                                        <span className="text-lg font-bold text-white">{s.val}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="col-span-8 bento-card p-5 flex flex-col justify-between">
+                                <p className="text-gray-300 text-sm leading-relaxed">"{cvData.bio}"</p>
+                                <div className="flex gap-3 mt-2">
+                                    
+                                    {/* CLICKABLE EMAIL */}
+                                    <a href={`mailto:${cvData.contact.email}`} className="flex-1 bg-white/5 rounded p-2 flex items-center gap-2 border border-white/5 hover:bg-white/10 transition cursor-pointer group">
+                                        <i className="fas fa-envelope text-gray-400 group-hover:text-white transition-colors"></i>
+                                        <span className="text-xs font-medium text-gray-300 truncate group-hover:text-white transition-colors">{cvData.contact.email}</span>
+                                    </a>
+
+                                    {/* CLICKABLE PHONE (Identical Style) */}
+                                    <a href={`tel:${cvData.contact.phone}`} className="flex-1 bg-white/5 rounded p-2 flex items-center gap-2 border border-white/5 hover:bg-white/10 transition cursor-pointer group">
+                                        <i className="fas fa-phone text-gray-400 group-hover:text-white transition-colors"></i>
+                                        <span className="text-xs font-medium text-gray-300 truncate group-hover:text-white transition-colors">{cvData.contact.phone}</span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ROW 3: EXPERIENCE + SKILLS (Flex Grow to fill space) */}
+                        <div className="grid grid-cols-12 gap-3 flex-grow min-h-0">
+                            
+                            {/* Experience Section */}
+                            <div className="col-span-8 bento-card p-6 flex flex-col">
+                                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-briefcase text-accent"></i> Experience</h3>
+                                <div className="flex flex-col gap-5 overflow-hidden">
+                                    {cvData.experience.map((exp, i) => (
+                                        <div key={i} className="relative pl-4 border-l-2 border-white/10">
+                                            <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-accent"></div>
+                                            <div className="flex justify-between mb-1">
+                                                <span className="font-bold text-white text-base">{exp.role}</span>
+                                            </div>
+                                            <div className="text-xs text-purple-400 mb-1">{exp.org}</div>
+                                            <p className="text-sm text-gray-400 leading-relaxed">{exp.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Skills Section */}
+                            <div className="col-span-4 bento-card p-5 flex flex-col">
+                                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-bolt text-pop"></i> Competencies</h3>
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {cvData.skills.map((s,i) => (
+                                        <span key={i} className="px-2 py-1 bg-white/5 rounded-[4px] text-[11px] text-gray-300 border border-white/10">{s}</span>
+                                    ))}
+                                </div>
+                                <div className="mt-auto">
+                                    <h4 className="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-widest">Tool Stack</h4>
+                                    <div className="grid grid-cols-1 gap-2">
+                                        {cvData.tech.map((t,i) => (
+                                            <div key={i} className="text-[11px] text-gray-300 flex items-center gap-3 p-1.5 rounded bg-white/5 border border-white/5">
+                                                <div className="w-5 text-center"><i className={`${t.icon} text-gray-400 text-xs`}></i></div> 
+                                                {t.name}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ROW 4: EDUCATION (Fixed Bottom) */}
+                        <div className="bento-card p-4 flex flex-row justify-between gap-4 shrink-0">
+                            {cvData.education.map((edu, i) => (
+                                <div key={i} className="flex-1 flex items-center gap-4 bg-white/5 p-3 rounded-lg border border-white/5">
+                                    <div className="w-10 h-10 rounded-full bg-pop/10 flex items-center justify-center text-pop text-lg"><i className="fas fa-graduation-cap"></i></div>
+                                    <div>
+                                        <div className="font-bold text-white text-sm">{edu.degree}</div>
+                                        <div className="text-xs text-gray-400">{edu.school} | {edu.year}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+    </script>
+</body>
+</html>
