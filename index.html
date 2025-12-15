@@ -6,18 +6,10 @@
     <title>Anaghan Smit - CV</title>
     
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png">
-    <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png">
-
-    <meta name="theme-color" content="#0e0e0e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" id="my-manifest">
-
-    <script src="https://cdn.tailwindcss.com"></script>
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,13 +26,6 @@
                         border: '#27272a',
                         accent: '#8b5cf6',
                         pop: '#10b981',
-                    },
-                    animation: { 'float': 'float 6s ease-in-out infinite' },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-8px)' },
-                        }
                     }
                 }
             }
@@ -48,82 +33,28 @@
     </script>
 
     <style>
-        body {
-            background-color: #0e0e0e;
-            color: white;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
+        body { background-color: #0e0e0e; color: white; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        .bento-card { background-color: #18181b; border: 1px solid #27272a; border-radius: 12px; overflow: hidden; position: relative; }
 
-        .bento-card {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* --- STRICT PRINT RULES --- */
+        /* --- PRINT RULES --- */
         @media print {
             @page { size: A4; margin: 0mm; }
-            body {
-                background-color: #0e0e0e !important;
-                margin: 0;
-                padding: 10mm !important;
-                width: 210mm;
-                height: 296mm;
-                box-sizing: border-box;
-                display: block; /* Force Block layout for print */
-            }
-            #root { width: 100%; height: 100%; display: block; }
+            body { background-color: #0e0e0e !important; margin: 0; padding: 10mm !important; width: 210mm; height: 296mm; display: block; }
             .no-print { display: none !important; }
-            a { text-decoration: none !important; color: inherit !important; }
-
-            /* Desktop Wrapper Reset for Print */
-            .cv-wrapper {
-                max-width: none !important;
-                margin: 0 !important;
-                width: 100% !important;
-                height: 100% !important;
-            }
-
-            /* FORCE GRID LAYOUT FOR PRINT */
-            .print-grid { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: 0.75rem !important; height: 100% !important; }
+            .cv-wrapper { max-width: none !important; margin: 0 !important; width: 100% !important; height: 100% !important; }
+            /* FORCE GRID */
+            .print-grid { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: 0.75rem !important; }
             .print-col-4 { grid-column: span 4 / span 4 !important; }
+            .print-col-6 { grid-column: span 6 / span 6 !important; }
             .print-col-8 { grid-column: span 8 / span 8 !important; }
             .print-col-12 { grid-column: span 12 / span 12 !important; }
             .print-flex-row { flex-direction: row !important; }
-            .print-flex-col { flex-direction: column !important; }
-            .print-h-full { height: 100% !important; }
-            
-            /* Hide scrollbars/overflow */
-            .overflow-hidden-print { overflow: hidden !important; }
         }
     </style>
 </head>
 <body>
 
     <div id="root"></div>
-
-    <script>
-        // --- DYNAMIC MANIFEST ---
-        const manifestContent = {
-            "name": "Anaghan Smit CV",
-            "short_name": "Anaghan CV",
-            "start_url": ".",
-            "display": "standalone",
-            "background_color": "#0e0e0e",
-            "theme_color": "#0e0e0e",
-            "icons": [{
-                "src": "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png",
-                "sizes": "192x192",
-                "type": "image/png"
-            }]
-        };
-        const blob = new Blob([JSON.stringify(manifestContent)], {type: 'application/json'});
-        document.querySelector('#my-manifest').href = URL.createObjectURL(blob);
-    </script>
 
     <script type="text/babel">
 
@@ -168,9 +99,22 @@
                     desc: "Managed end-to-end social production. Filmed and edited short-form video content (Reels/Shorts) using trending audio, resulting in high organic reach. Executed community engagement tactics to boost brand loyalty."
                 }
             ],
+            // --- NEW EXPANDED EDUCATION DATA ---
             education: [
-                { degree: "MSc Digital Marketing", school: "Dublin Business School", year: "2027" },
-                { degree: "Bachelor in Computer Application", school: "Veer Narmad South Gujarat University", year: "2025" }
+                { 
+                    degree: "MSc in Digital Marketing & Analytics", 
+                    school: "Dublin Business School", 
+                    year: "2026 - 2027",
+                    location: "Dublin, Ireland",
+                    modules: ["Digital Strategy", "Web Analytics (GA4)", "Social Media Marketing", "SEO & SEM", "Data Visualization"]
+                },
+                { 
+                    degree: "Bachelor of Computer Applications (BCA)", 
+                    school: "Veer Narmad South Gujarat University", 
+                    year: "2022 - 2025",
+                    location: "Gujarat, India",
+                    modules: ["Web Development Basics", "Database Management", "UI/UX Principles", "Programming Logic", "Information Systems"]
+                }
             ]
         };
 
@@ -178,19 +122,11 @@
             return (
                 <div className="min-h-screen w-full flex justify-center p-4 md:py-8">
                     
-                    {/* --- STICKY PDF BUTTON --- */}
-                    <button 
-                        onClick={() => window.print()} 
-                        className="no-print fixed bottom-6 right-6 z-50 bg-accent hover:bg-violet-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group"
-                        title="Save as PDF"
-                    >
+                    {/* PDF BUTTON */}
+                    <button onClick={() => window.print()} className="no-print fixed bottom-6 right-6 z-50 bg-accent hover:bg-violet-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group" title="Save as PDF">
                         <i className="fas fa-file-pdf text-xl group-hover:animate-bounce"></i>
                     </button>
 
-                    {/* CV WRAPPER:
-                       - Mobile: w-full (fills screen)
-                       - Desktop: max-w-[210mm] (Standard A4 width), centered
-                    */}
                     <div className="cv-wrapper w-full md:max-w-[210mm] flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-3 print-grid">
                         
                         {/* 1. HEADER */}
@@ -237,8 +173,8 @@
                             </div>
                         </div>
 
-                        {/* 4. EXPERIENCE (Height adapts to content) */}
-                        <div className="col-span-12 md:col-span-8 print-col-8 bento-card p-6 flex flex-col overflow-hidden-print">
+                        {/* 4. EXPERIENCE */}
+                        <div className="col-span-12 md:col-span-6 print-col-6 bento-card p-6 flex flex-col overflow-hidden-print">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-briefcase text-accent"></i> Experience</h3>
                             <div className="flex flex-col gap-6 md:gap-5">
                                 {cvData.experience.map((exp, i) => (
@@ -254,8 +190,8 @@
                             </div>
                         </div>
 
-                        {/* 5. SKILLS */}
-                        <div className="col-span-12 md:col-span-4 print-col-4 bento-card p-5 flex flex-col">
+                        {/* 5. SKILLS & TOOLS (Moved to side column) */}
+                        <div className="col-span-12 md:col-span-6 print-col-6 bento-card p-5 flex flex-col">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2"><i className="fas fa-bolt text-pop"></i> Competencies</h3>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {cvData.skills.map((s,i) => (
@@ -264,7 +200,7 @@
                             </div>
                             <div className="mt-auto">
                                 <h4 className="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-widest">Tool Stack</h4>
-                                <div className="grid grid-cols-1 gap-2">
+                                <div className="grid grid-cols-2 gap-2">
                                     {cvData.tech.map((t,i) => (
                                         <div key={i} className="text-[11px] text-gray-300 flex items-center gap-3 p-2 md:p-1.5 rounded bg-white/5 border border-white/5">
                                             <div className="w-5 text-center"><i className={`${t.icon} text-gray-400 text-xs`}></i></div> 
@@ -275,17 +211,41 @@
                             </div>
                         </div>
 
-                        {/* 6. EDUCATION */}
-                        <div className="col-span-12 print-col-12 bento-card p-4 flex flex-col md:flex-row justify-between gap-4 shrink-0 print-flex-row">
-                            {cvData.education.map((edu, i) => (
-                                <div key={i} className="flex-1 flex items-center gap-4 bg-white/5 p-3 rounded-lg border border-white/5">
-                                    <div className="w-10 h-10 rounded-full bg-pop/10 flex items-center justify-center text-pop text-lg shrink-0"><i className="fas fa-graduation-cap"></i></div>
-                                    <div>
-                                        <div className="font-bold text-white text-sm">{edu.degree}</div>
-                                        <div className="text-xs text-gray-400">{edu.school} | {edu.year}</div>
+                        {/* 6. EDUCATION (New Separate Section) */}
+                        <div className="col-span-12 print-col-12 bento-card p-6">
+                            <h3 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
+                                <i className="fas fa-graduation-cap text-pop"></i> Education History
+                            </h3>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {cvData.education.map((edu, i) => (
+                                    <div key={i} className="relative group">
+                                        {/* Card BG */}
+                                        <div className="bg-white/5 p-4 rounded-xl border border-white/5 h-full hover:border-white/10 transition-colors">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <div className="bg-pop/10 text-pop px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                                                    {i === 0 ? "Masters" : "Bachelors"}
+                                                </div>
+                                                <div className="text-gray-400 text-xs font-mono">{edu.year}</div>
+                                            </div>
+                                            
+                                            <h4 className="text-white font-bold text-lg leading-tight mb-1">{edu.degree}</h4>
+                                            <p className="text-purple-400 text-sm mb-4">{edu.school} <span className="text-gray-600">•</span> {edu.location}</p>
+                                            
+                                            <div className="border-t border-white/5 pt-3">
+                                                <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Key Modules</p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {edu.modules.map((mod, k) => (
+                                                        <span key={k} className="text-xs text-gray-300 bg-black/20 px-2 py-1 rounded">
+                                                            {mod}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
 
                     </div>
