@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anaghan Smit | CV</title>
     
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -27,7 +29,7 @@
                         dark: '#09090b',       
                         card: '#18181b',       
                         border: '#27272a',     
-                        accent: '#f97316',     // Orange (From Reference)
+                        accent: '#f97316',     // Orange
                     },
                     backgroundImage: {
                         'gradient-glow': 'linear-gradient(to right, #f97316, #db2777)', 
@@ -103,28 +105,6 @@
 <body>
 
     <div id="root"></div>
-
-    <script>
-        /* Avatar Generation Script from Reference */
-        (function() {
-            const setSmartFavicon = () => {
-                const link = document.createElement('link');
-                link.rel = 'icon';
-                document.head.appendChild(link);
-                const img = new Image();
-                img.src = 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png'; 
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 128; canvas.height = 128;
-                    const ctx = canvas.getContext('2d');
-                    ctx.beginPath(); ctx.arc(64, 64, 64, 0, 2 * Math.PI); ctx.closePath(); ctx.clip();
-                    ctx.drawImage(img, 0, 0, 128, 128);
-                    link.href = canvas.toDataURL();
-                };
-            };
-            setSmartFavicon();
-        })();
-    </script>
 
     <script type="text/babel">
 
