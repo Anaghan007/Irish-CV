@@ -26,10 +26,10 @@
                         roleFont: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        dark: '#09090b',       
-                        card: '#18181b',       
-                        border: '#27272a',     
-                        accent: '#f97316',     // Orange
+                        dark: '#09090b',        
+                        card: '#18181b',        
+                        border: '#27272a',      
+                        accent: '#f97316',      // Orange
                     },
                     backgroundImage: {
                         'gradient-glow': 'linear-gradient(to right, #f97316, #db2777)', 
@@ -41,10 +41,12 @@
 
     <style>
         body { background-color: #09090b; color: #e4e4e7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        /* UPDATED: Increased Border Radius significantly to 32px for "Full" effect on cards */
         .bento-card { 
             background-color: #18181b; 
             border: 1px solid #27272a; 
-            border-radius: 16px; 
+            border-radius: 32px; 
             overflow: hidden; 
             position: relative;
             transition: border-color 0.3s ease;
@@ -227,10 +229,10 @@
                                 <p className="text-gray-300 text-sm leading-relaxed font-light mb-4">
                                     {cvData.bio}
                                 </p>
-                                {/* Quick Stats embedded in About */}
+                                {/* Quick Stats - Changed to rounded-2xl */}
                                 <div className="flex gap-2">
                                     {cvData.stats.map((s,i) => (
-                                        <div key={i} className="bg-white/5 rounded p-2 flex-1 text-center border border-white/5">
+                                        <div key={i} className="bg-white/5 rounded-2xl p-2 flex-1 text-center border border-white/5">
                                             <div className="text-white font-bold text-sm">{s.val}</div>
                                             <div className="text-[9px] text-gray-500 uppercase">{s.label}</div>
                                         </div>
@@ -241,8 +243,9 @@
                             <div className="bento-card p-5 flex-grow">
                                 <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Core Skills</h3>
                                 <div className="flex flex-wrap gap-2 mb-6">
+                                    {/* Skills - Changed to rounded-full */}
                                     {cvData.skills.map((skill, i) => (
-                                        <span key={i} className="px-2.5 py-1 bg-white/5 text-gray-300 text-[11px] font-medium rounded border border-white/5 hover:border-accent/30 transition-colors">
+                                        <span key={i} className="px-2.5 py-1 bg-white/5 text-gray-300 text-[11px] font-medium rounded-full border border-white/5 hover:border-accent/30 transition-colors">
                                             {skill}
                                         </span>
                                     ))}
@@ -250,8 +253,9 @@
                                 
                                 <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Tools</h3>
                                 <div className="grid grid-cols-1 gap-2">
+                                    {/* Tools - Changed to rounded-full */}
                                     {cvData.tools.map((t, i) => (
-                                        <div key={i} className="flex items-center gap-2 text-xs text-gray-400 bg-black/20 p-2 rounded">
+                                        <div key={i} className="flex items-center gap-2 text-xs text-gray-400 bg-black/20 p-2 rounded-full px-4">
                                             <i className={`${t.icon} text-accent`}></i> {t.name}
                                         </div>
                                     ))}
@@ -263,7 +267,7 @@
                         <div className="col-span-12 md:col-span-8 print-col-8 flex flex-col gap-3">
                             <div className="bento-card p-6">
                                 <h2 className="text-lg font-roleFont font-bold text-white mb-6 flex items-center gap-2">
-                                    <span className="w-8 h-8 rounded bg-accent/10 flex items-center justify-center text-accent text-sm">
+                                    <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent text-sm">
                                         <i className="fas fa-briefcase"></i>
                                     </span>
                                     Experience
@@ -275,7 +279,8 @@
                                             <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-border group-hover:bg-accent transition-colors shadow-[0_0_0_4px_#18181b]"></div>
                                             <div className="flex flex-col md:flex-row md:items-center justify-between mb-1">
                                                 <h3 className="text-white font-bold text-lg group-hover:text-accent transition-colors">{exp.role}</h3>
-                                                <span className="text-xs font-mono text-gray-500 bg-white/5 px-2 py-1 rounded">{exp.period}</span>
+                                                {/* Date Label - Changed to rounded-full */}
+                                                <span className="text-xs font-mono text-gray-500 bg-white/5 px-2 py-1 rounded-full">{exp.period}</span>
                                             </div>
                                             <div className="text-accent text-sm font-medium mb-1">{exp.company}</div>
                                             <p className="text-gray-400 text-sm leading-relaxed">
@@ -291,13 +296,15 @@
                                     <i className="fas fa-graduation-cap text-accent"></i> Education
                                 </h2>
                                 <div className="grid grid-cols-1 gap-3">
+                                    {/* Education Cards - Changed to rounded-3xl */}
                                     {cvData.education.map((edu, i) => (
-                                        <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5 hover:border-white/10 transition-colors flex justify-between items-center">
+                                        <div key={i} className="bg-white/5 rounded-3xl p-4 border border-white/5 hover:border-white/10 transition-colors flex justify-between items-center">
                                             <div>
                                                 <div className="text-white font-bold text-sm">{edu.degree}</div>
                                                 <div className="text-gray-500 text-xs mt-1">{edu.school}</div>
                                             </div>
-                                            <div className="text-accent font-mono text-xs bg-accent/10 px-2 py-1 rounded">{edu.year}</div>
+                                            {/* Date Label - Changed to rounded-full */}
+                                            <div className="text-accent font-mono text-xs bg-accent/10 px-3 py-1 rounded-full">{edu.year}</div>
                                         </div>
                                     ))}
                                 </div>
